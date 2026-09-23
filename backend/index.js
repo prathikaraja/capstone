@@ -1,3 +1,4 @@
+const authRoutes = require('./routes/authRoutes');
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -9,6 +10,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use('/api/auth', authRoutes);
 
 // Day 2 Test Endpoint
 app.get('/api/test', (req, res) => {
@@ -19,7 +21,7 @@ app.get('/api/test', (req, res) => {
 });
 
 // Database Sync & Server Start
-sequelize.sync().then(() => {
+sequelize.sync({ alter: true }).then(() => {
   console.log('Database connected and synced.');
   app.listen(PORT, () => {
     console.log(`Server listening on port: ${PORT}`);
