@@ -20,3 +20,48 @@
 ### Day 5: Week 1 Review & Finalization
 - Code review and bug fixes completed.
 - Full-stack workflow verified end-to-end.
+# Capstone Full-Stack SaaS Project
+
+## Week 1 Progress & Architecture Overview
+
+### Day 1 & Day 2: Backend Core Setup
+- Initialized Node.js and Express backend server.
+- Integrated SQLite database via Sequelize ORM.
+- Configured health check and database test endpoints.
+
+### Day 3: Frontend Setup
+- Initialized React application using Vite.
+- Created reusable `StatusCard` component.
+- Successfully connected frontend with backend API (`/api/test`).
+
+### Day 4: Environment & Container Configuration
+- Configured `.env` environment variables using `dotenv`.
+- Created basic `Dockerfile` for containerization.
+- Configured Vite proxy server for API requests (`/api`).
+
+### Day 5: Week 1 Review & Finalization
+- Code review and bug fixes completed.
+- Full-stack workflow verified end-to-end.
+
+---
+
+## Week 2: Planning & Architectural Design
+
+### Day 8: Project Requirements
+- Defined project scope, core SaaS functionalities, and target audience.
+- Formulated user personas and technical user stories in `REQUIREMENTS.md`.
+
+### Day 9: System Architecture
+- Designed client-server MVC tiered architecture in `ARCHITECTURE.md`.
+- Selected technology stack (React, Express, Sequelize, SQLite/PostgreSQL) and cloud deployment strategy.
+
+### Day 10: Database & Storage Strategy
+- Mapped relational entity schemas for Users, Projects, and Tasks in `DATABASE.md`.
+- Planned cloud object storage integration and data backup recovery policies.
+
+### Day 11: Project Timeline & QA Strategy
+- Formulated Work Breakdown Structure (WBS) and milestone schedules in `PROJECT_PLAN.md`.
+- Defined dependency risk mitigation matrix and test coverage protocols.
+
+### Day 12: Week 2 Review & GitHub Finalization
+- Verified end-to-end planning documents and synchronized documentation into GitHub repository.
