@@ -23,6 +23,10 @@ app.get('/api/test', (req, res) => {
 // Database Sync & Server Start
 sequelize.sync({ alter: true }).then(() => {
   console.log('Database connected and synced.');
+  const errorHandler = require('./middleware/errorMiddleware');
+
+// Global error handling
+app.use(errorHandler);
   app.listen(PORT, () => {
     console.log(`Server listening on port: ${PORT}`);
   });

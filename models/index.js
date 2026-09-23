@@ -1,3 +1,4 @@
+const errorHandler = require('./middleware/errorMiddleware');
 const sequelize = require('../config/db');
 const User = require('./user');
 const Project = require('./project');
