@@ -65,3 +65,25 @@
 
 ### Day 12: Week 2 Review & GitHub Finalization
 - Verified end-to-end planning documents and synchronized documentation into GitHub repository.
+---
+
+## Week 3: Backend Implementation & Core Architecture
+
+### Day 15: Setting Up User Authentication
+- Implemented user registration (`/api/auth/register`) and login (`/api/auth/login`) API endpoints.
+- Integrated JSON Web Tokens (JWT) for stateless authentication.
+- Configured bcrypt password hashing and auth verification middleware.
+
+### Day 16: Designing Data Models
+- Designed core entity schemas for `Project` and `Task`.
+- Established relational associations (1:N between User, Project, and Task).
+- Configured database seeding script (`seed.js`) and seeded sample data.
+
+### Day 18: Error Handling and Validation
+- Configured robust input validation middleware for authentication routes.
+- Created descriptive custom validation error responses.
+- Implemented centralized global error-handling middleware in Express.
+
+### Day 19: Week 3 Review & GitHub Finalization
+- Verified all backend routes, data seeding, and error boundaries.
+- Consolidated documentation and synchronized codebase to remote repository.
