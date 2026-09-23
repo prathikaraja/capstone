@@ -1,0 +1,22 @@
+# Capstone Full-Stack SaaS Project
+
+## Week 1 Progress & Architecture Overview
+
+### Day 1 & Day 2: Backend Core Setup
+- Initialized Node.js and Express backend server.
+- Integrated SQLite database via Sequelize ORM.
+- Configured health check and database test endpoints.
+
+### Day 3: Frontend Setup
+- Initialized React application using Vite.
+- Created reusable `StatusCard` component.
+- Successfully connected frontend with backend API (`/api/test`).
+
+### Day 4: Environment & Container Configuration
+- Configured `.env` environment variables using `dotenv`.
+- Created basic `Dockerfile` for containerization.
+- Configured Vite proxy server for API requests (`/api`).
+
+### Day 5: Week 1 Review & Finalization
+- Code review and bug fixes completed.
+- Full-stack workflow verified end-to-end.
