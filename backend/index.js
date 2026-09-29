@@ -1,30 +1,34 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const morgan = require('morgan');
 const errorHandler = require('./middleware/errormiddleware');
 
 const app = express();
 
-// 1. HTTP Request Logger
+app.use(cors({ origin: '*' }));
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Health & Test Endpoints
+const successHandler = (req, res) => {
+  res.status(200).json({ status: 'Connected', message: 'Backend connected successfully!' });
+};
+
+app.get('/', successHandler);
+app.get('/status', successHandler);
+app.get('/api', successHandler);
+app.get('/api/status', successHandler);
+app.get('/api/health', successHandler);
+app.get('/api/test', successHandler);
 
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api', require('./routes/uploadRoutes'));
 
-// 2. Intentional Trigger Route for Error Handling & Logging Test
-app.get('/api/trigger-error', (req, res, next) => {
-  const err = new Error('Explicit test error for centralized logging system.');
-  err.statusCode = 400;
-  next(err);
-});
-
-// 3. Centralized Error Handling Middleware (Always at the end)
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
