@@ -1,3 +1,4 @@
+const errorHandler = require('../middleware/errormiddleware');
 const authRoutes = require('./routes/authRoutes');
 require('dotenv').config();
 const express = require('express');
@@ -24,9 +25,10 @@ app.get('/api/test', (req, res) => {
 sequelize.sync({ alter: true }).then(() => {
   console.log('Database connected and synced.');
   const errorHandler = require('./middleware/errorMiddleware');
-
 // Global error handling
-app.use(errorHandler);
+if (typeof errorHandler === 'function') {
+  app.use(errorHandler);
+}
   app.listen(PORT, () => {
     console.log(`Server listening on port: ${PORT}`);
   });

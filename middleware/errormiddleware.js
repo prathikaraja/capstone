@@ -1,5 +1,4 @@
-// Global Centralized Error Handling Middleware
-module.exports = (err, req, res, next) => {
+const errorHandler = (err, req, res, next) => {
   console.error('Unhandled Application Error:', err);
 
   const statusCode = err.statusCode || 500;
@@ -11,3 +10,5 @@ module.exports = (err, req, res, next) => {
     ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
   });
 };
+
+module.exports = errorHandler;
