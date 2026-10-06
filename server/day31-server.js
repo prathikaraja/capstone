@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { Sequelize, DataTypes } = require('sequelize');
@@ -86,7 +87,16 @@ app.delete('/api/projects/:id', async (req, res) => {
     res.status(500).json({ success: false, error: e.message });
   }
 });
+// Health check for Cloud Load Balancer & Auto-scaler
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'UP',
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString()
+  });
+});
 
-app.listen(5000, () => {
-  console.log('Backend running on http://localhost:5000');
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Backend running on port ${PORT}`);
 });
