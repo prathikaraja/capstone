@@ -1,0 +1,44 @@
+import React, { useState, useEffect } from "react";
+
+export default function App() {
+  const [projects, setProjects] = useState([]);
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [msg, setMsg] = useState("");
+
+  const loadData = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/projects");
+      const data = await res.json();
+      if (data.success) setProjects(data.data || []);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const handleSave = async (e) => {
+    e.preventDefault();
+    if (!title.trim()) return;
+    try {
+      const res = await fetch("http://localhost:5000/api/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: title.trim(), description: desc.trim() }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setMsg("Project Stored Successfully!");
+        setTitle("");
+        setDesc("");
+        loadData();
+      }
+    } catch (e) {
+      setMsg("Error saving project");
+    }
+  };
+
+  return (

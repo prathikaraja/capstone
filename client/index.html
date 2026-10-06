@@ -1,12 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SaaS Frontend</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Day 31 Storage App</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding-top: 30px; margin: 0; }
+    .box { background: #ffffff; padding: 25px; border-radius: 8px; width: 450px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    h2 { text-align: center; margin-top: 0; color: #333; }
+    p.sub { text-align: center; color: #777; font-size: 13px; margin-top: -6px; }
+    input, select, button { width: 100%; padding: 10px; margin-top: 10px; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc; font-size: 14px; }
+    button { background: #007bff; color: white; border: none; font-weight: bold; cursor: pointer; }
+    #msg { margin-top: 12px; color: green; font-weight: bold; text-align: center; }
+    .project-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #eee; }
+    .del-btn { background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; width: auto; margin-top: 0; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Day 31: Data Storage &amp; Retrieval</h2>
+    <p class="sub">Store SaaS Project in SQLite Database</p>
+    <form id="projectForm">
+      <input id="pTitle" placeholder="Enter Project Title" required>
+      <input id="pDesc" placeholder="Enter Description">
+      <select id="pStatus">
+        <option value="active">Active</option>
+        <option value="completed">Completed</option>
+        <option value="archived">Archived</option>
+      </select>
+      <button type="submit">Save to Database</button>
+    </form>
+    <div id="msg"></div>
+    <h4 style="margin-top: 25px;">Stored Projects:</h4>
+    <div id="projectsList">Loading...</div>
+  </div>
+  <script>
+    const loadProjects = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/projects");
+        const resData = await res.json();
+        const items = resData.data || [];
+        const container = document.getElementById("projectsList");
+        if (items.length === 0) {
+          container.innerHTML = "<p style='color:#888; font-size:13px;'>No projects stored yet. Fill the form above!</p>";
+          return;
+        }
+        container.innerHTML = items.map(p => `
+          <div class="project-item">
+            <div>
+              <strong>${p.title}</strong> <span style="font-size:11px; background:#e2e8f0; padding:2px 6px; border-radius:4px;">${p.status || "active"}</span>
+              <div style="color: #666; font-size: 13px;">${p.description || "No description"}</div>
+            </div>
+            <button class="del-btn" onclick="removeProject(${p.id})">Delete</button>
+          </div>
+        `).join("");
+      } catch (err) {
+        document.getElementById("projectsList").innerHTML = "<p style='color:red; font-size:13px;'>Backend server connect aagala. Port 5000 run aagudha nu check pannunga.</p>";
+      }
+    };
+
+    document.getElementById("projectForm").onsubmit = async (e) => {
+      e.preventDefault();
+      const title = document.getElementById("pTitle").value.trim();
+      const description = document.getElementById("pDesc").value.trim();
+      const status = document.getElementById("pStatus").value;
+
+      if (!title) return;
+
+      try {
+        const res = await fetch("http://localhost:5000/api/projects", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ title, description, status })
+        });
+        const result = await res.json();
+        if (result.success) {
+          document.getElementById("msg").innerText = "Project Saved Successfully!";
+          document.getElementById("pTitle").value = "";
+          document.getElementById("pDesc").value = "";
+          loadProjects();
+          setTimeout(() => { document.getElementById("msg").innerText = ""; }, 3000);
+        }
+      } catch (e) {
+        document.getElementById("msg").innerText = "Save failed!";
+      }
+    };
+
+    window.removeProject = async (id) => {
+      try {
+        await fetch("http://localhost:5000/api/projects/" + id, { method: "DELETE" });
+        loadProjects();
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    loadProjects();
+  </script>
+</body>
 </html>
