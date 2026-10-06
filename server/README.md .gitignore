@@ -1,0 +1,89 @@
+# Capstone Full-Stack SaaS Project
+
+## Week 1 Progress & Architecture Overview
+
+### Day 1 & Day 2: Backend Core Setup
+- Initialized Node.js and Express backend server.
+- Integrated SQLite database via Sequelize ORM.
+- Configured health check and database test endpoints.
+
+### Day 3: Frontend Setup
+- Initialized React application using Vite.
+- Created reusable `StatusCard` component.
+- Successfully connected frontend with backend API (`/api/test`).
+
+### Day 4: Environment & Container Configuration
+- Configured `.env` environment variables using `dotenv`.
+- Created basic `Dockerfile` for containerization.
+- Configured Vite proxy server for API requests (`/api`).
+
+### Day 5: Week 1 Review & Finalization
+- Code review and bug fixes completed.
+- Full-stack workflow verified end-to-end.
+# Capstone Full-Stack SaaS Project
+
+## Week 1 Progress & Architecture Overview
+
+### Day 1 & Day 2: Backend Core Setup
+- Initialized Node.js and Express backend server.
+- Integrated SQLite database via Sequelize ORM.
+- Configured health check and database test endpoints.
+
+### Day 3: Frontend Setup
+- Initialized React application using Vite.
+- Created reusable `StatusCard` component.
+- Successfully connected frontend with backend API (`/api/test`).
+
+### Day 4: Environment & Container Configuration
+- Configured `.env` environment variables using `dotenv`.
+- Created basic `Dockerfile` for containerization.
+- Configured Vite proxy server for API requests (`/api`).
+
+### Day 5: Week 1 Review & Finalization
+- Code review and bug fixes completed.
+- Full-stack workflow verified end-to-end.
+
+---
+
+## Week 2: Planning & Architectural Design
+
+### Day 8: Project Requirements
+- Defined project scope, core SaaS functionalities, and target audience.
+- Formulated user personas and technical user stories in `REQUIREMENTS.md`.
+
+### Day 9: System Architecture
+- Designed client-server MVC tiered architecture in `ARCHITECTURE.md`.
+- Selected technology stack (React, Express, Sequelize, SQLite/PostgreSQL) and cloud deployment strategy.
+
+### Day 10: Database & Storage Strategy
+- Mapped relational entity schemas for Users, Projects, and Tasks in `DATABASE.md`.
+- Planned cloud object storage integration and data backup recovery policies.
+
+### Day 11: Project Timeline & QA Strategy
+- Formulated Work Breakdown Structure (WBS) and milestone schedules in `PROJECT_PLAN.md`.
+- Defined dependency risk mitigation matrix and test coverage protocols.
+
+### Day 12: Week 2 Review & GitHub Finalization
+- Verified end-to-end planning documents and synchronized documentation into GitHub repository.
+---
+
+## Week 3: Backend Implementation & Core Architecture
+
+### Day 15: Setting Up User Authentication
+- Implemented user registration (`/api/auth/register`) and login (`/api/auth/login`) API endpoints.
+- Integrated JSON Web Tokens (JWT) for stateless authentication.
+- Configured bcrypt password hashing and auth verification middleware.
+
+### Day 16: Designing Data Models
+- Designed core entity schemas for `Project` and `Task`.
+- Established relational associations (1:N between User, Project, and Task).
+- Configured database seeding script (`seed.js`) and seeded sample data.
+
+### Day 18: Error Handling and Validation
+- Configured robust input validation middleware for authentication routes.
+- Created descriptive custom validation error responses.
+- Implemented centralized global error-handling middleware in Express.
+
+### Day 19: Week 3 Review & GitHub Finalization
+- Verified all backend routes, data seeding, and error boundaries.
+- Consolidated documentation and synchronized codebase to remote repository.
