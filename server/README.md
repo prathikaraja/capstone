@@ -14,3 +14,9 @@
 - Enforced RBAC with custom middleware (403 Forbidden for unauthorized access).
 - Integrated multer file uploads on /api/upload with local storage and 5MB limit.
 - Configured morgan HTTP logging and centralized error handling middleware.
+## Week 5 Summary: Database Integration, Testing & Debugging
+- **Schema & Database**: Designed and integrated SQLite database using Sequelize ORM.
+- **API Endpoints**: Connected Frontend with Express REST APIs (`GET`, `POST`, `DELETE` on `/api/projects`).
+- **Data Validation & Sanitization**: Implemented backend payload verification and whitespace trimming.
+- **Testing & Debugging**: Performed automated and manual API testing to ensure robust error handling and query optimization.
+- **Status**: Completed and fully functional.
